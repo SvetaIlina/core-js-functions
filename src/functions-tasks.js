@@ -123,8 +123,14 @@ function getPolynom(...args) {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  const cash = {};
+  return (x) => {
+    if (!(x in cash)) {
+      cash[x] = func(x);
+    }
+    return cash[x];
+  };
 }
 
 /**
